@@ -1,13 +1,13 @@
-package com.pcf.final;
+package com.pcf.tripit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FinalApplication {
+public class TripitApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FinalApplication.class, args);
+		SpringApplication.run(TripitApplication.class, args);
 	}
 
 }
