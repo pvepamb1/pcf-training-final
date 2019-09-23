@@ -31,7 +31,7 @@
 
     <div class="hotelside">
         <img src="../../assests/img/hotel.png" width="360px" height="360px" style="padding-left:150px; padding-top: 30px">
-        <button class="button" style="vertical-align:middle;  margin-left: 250px; margin-top:90px"><span>Book Hotel </span></button>
+        <button onclick="window.location.href = '/hotels';" class="button" style="vertical-align:middle;  margin-left: 250px; margin-top:90px"><span>Book Hotel </span></button>
     </div>
 </div>
 </body>

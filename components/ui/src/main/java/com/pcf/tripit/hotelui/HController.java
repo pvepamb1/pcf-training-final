@@ -16,6 +16,6 @@ public class HController {
     @GetMapping("/hotels")
     public String allHotels(Map<String, Object> model) {
         model.put("hotels", hotelClient.getAll() );
-        return "hotels";
+        return "hotel";
     }
 }

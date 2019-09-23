@@ -27,7 +27,7 @@ public class HotelClient {
         this.restOperations = restOperations;
     }
 
-    public void create(HotelClient hotel) {
+    public void create(HotelUI hotel) {
         restOperations.postForEntity(hotelURL, hotel, HotelUI.class);
     }
 

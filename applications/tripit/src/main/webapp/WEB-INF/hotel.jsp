@@ -6,6 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="language" value="${pageContext.request.locale}"/>
+<fmt:setLocale value="${language}"/>
 <html>
 <head>
     <title>Hotel</title>
@@ -99,13 +104,12 @@
         </thead>
 
         <tbody>
-        <c:forEach items="${hotels}" var="hotels">
+        <c:forEach items="${hotels}" var="hotel">
             <tr>
-                <td><c:out value="${hotels.name}"/></td>
-                <td><c:out value="${hotels.address}"/></td>
-                <td><c:out value="${hotels.city}"/></td>
-                <td><c:out value="${hotels.price}"/></td>
-                <td><c:out value="${hotels.cost}"/></td>
+                <td><c:out value="${hotel.name}"/></td>
+                <td><c:out value="${hotel.address}"/></td>
+                <td><c:out value="${hotel.city}"/></td>
+                <td><c:out value="${hotel.price}"/></td>
                 <td><button class="button button2">Book</button></td>
             </tr>
         </c:forEach>
@@ -114,15 +118,14 @@
 
     <c:if test="${count > 0}">
         <c:if test="${page > 1}">
-            <a href="<c:url value="hotels"><c:param name="page" value="${page - 1}"/><c:param name="field" value="${field}"/><c:param name="key" value="${key}"/></c:url>">&lt; Prev</a>&nbsp;
+          <a href="<c:url value="moviefun"><c:param name="page" value="${page - 1}"/><c:param name="field" value="${field}"/><c:param name="key" value="${key}"/></c:url>">&lt; Prev</a>&nbsp;
         </c:if>
         Showing records ${start} to ${end} of ${count}
         <c:if test="${page < pageCount}">
-            &nbsp;<a href="<c:url value="hotels"><c:param name="page" value="${page + 1}"/><c:param name="field" value="${field}"/><c:param name="key"
-                                                                                                                                             value="${key}"/></c:url>">Next &gt;</a>
+          &nbsp;<a href="<c:url value="moviefun"><c:param name="page" value="${page + 1}"/><c:param name="field" value="${field}"/><c:param name="key"
+                                                                                                                                            value="${key}"/></c:url>">Next &gt;</a>
         </c:if>
-    </c:if>
-
+      </c:if>
 </div>
 </body>
 </html>
