@@ -12,9 +12,7 @@ jobs:
       language: java
       jdk: oraclejdk8
       install: skip
-      script:
-        - chmod +x gradlew
-        - ./gradlew clean build -x test
+      script: ./gradlew clean build -x test
       before_deploy:
         - git config --local user.name "Build Bot"
         - git config --local user.email "buildbot@example.com"
@@ -29,7 +27,7 @@ jobs:
       language: java
       script:
         - echo "Downloading $RELEASE_TAG"
-        - wget -P applications/mediabase/build/libs https://github.com/$GITHUB_USERNAME/mediabase/releases/download/$RELEASE_TAG/triptit-1.0-SNAPSHOT.war
+        - wget -P applications/tripit/build/libs https://github.com/$GITHUB_USERNAME/tripit/releases/download/$RELEASE_TAG/triptit-1.0-SNAPSHOT.war
       before_deploy:
         - echo "Deploying $RELEASE_TAG to test"
       deploy:
