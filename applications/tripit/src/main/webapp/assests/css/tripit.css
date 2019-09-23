@@ -55,3 +55,20 @@
     opacity: 1;
     right: 0;
   }
+table {
+    margin-top:150px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 25px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color:#585858;
+    color: white;
+}
