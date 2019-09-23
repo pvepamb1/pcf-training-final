@@ -21,7 +21,7 @@ jobs:
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
         file:
-          - "applications/pcf-training-final/build/libs/tripit-1.0-SNAPSHOT.war"
+          - "applications/tripit/build/libs/tripit-1.0-SNAPSHOT.war"
         skip_cleanup: true
     - stage: deploy to test
       language: java
