@@ -1,5 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'base'
 
 sourceCompatibility = 1.8
 

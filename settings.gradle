@@ -1,2 +1,4 @@
 rootProject.name = 'tripit'
 include "applications:tripit"
+include "components:flights"
+include "components:hotels"
