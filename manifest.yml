@@ -1,0 +1,5 @@
+applications:
+  - name: tripit
+    path: applications/tripit/build/libs/tripit-1.0-SNAPSHOT.war
+    routes:
+      - route: pvv-tripit.apps.pcf.paltraining.perficient.com
