@@ -27,7 +27,7 @@ jobs:
       language: java
       script:
         - echo "Downloading $RELEASE_TAG"
-        - wget -P applications/tripit/build/libs https://github.com/$GITHUB_USERNAME/tripit/releases/download/$RELEASE_TAG/tripit-1.0-SNAPSHOT.war
+        - wget -P applications/tripit/build/libs https://github.com/$GITHUB_USERNAME/pcf-training-final/releases/download/$RELEASE_TAG/tripit-1.0-SNAPSHOT.war
       before_deploy:
         - echo "Deploying $RELEASE_TAG to test"
       deploy:
