@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/flights")
-
 public class FlightController {
 
     private FlightRepository flightRepository;
