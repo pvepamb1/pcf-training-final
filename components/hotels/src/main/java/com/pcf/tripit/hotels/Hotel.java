@@ -1,6 +1,5 @@
 package com.pcf.tripit.hotels;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,22 +14,20 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String hotelName;
-    private String hotelAddress;
-    private String hotelCity;
-    private String capacity;
-    private String available;
-    private int price;
+    private String name;
+    private String address;
+    private String city;
+    private int capacity;
+    private double price;
 
     public Hotel() {
     }
 
-    public Hotel(String hotelName, String hotelAddress, String hotelCity, String capacity, String available, int price) {
-        this.hotelName = hotelName;
-        this.hotelAddress = hotelAddress;
-        this.hotelCity = hotelCity;
+    public Hotel(String name, String address, String city, int capacity, double price) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
         this.capacity = capacity;
-        this.available = available;
         this.price = price;
     }
 
@@ -42,47 +39,39 @@ public class Hotel {
         this.id = id;
     }
 
-    public String getHotelName() {
-        return hotelName;
+    public String getName() {
+        return name;
     }
 
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getHotelAddress() {
-        return hotelAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setHotelAddress(String hotelAddress) {
-        this.hotelAddress = hotelAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getHotelCity() {
-        return hotelCity;
+    public String getCity() {
+        return city;
     }
 
-    public void setHotelCity(String hotelCity) {
-        this.hotelCity = hotelCity;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(String capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
-    public String getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
-    }
-
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
