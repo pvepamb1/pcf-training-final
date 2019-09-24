@@ -22,7 +22,7 @@ public class HotelController {
         this.hotelRepository = hotelRepository;
     }
 
-    /*@GetMapping
+    @GetMapping("/book")
     public Iterable<Hotel> getAvailable(@RequestParam String begin, @RequestParam String end) throws ParseException {
 
         Date startDate = new SimpleDateFormat("YYYY/MM/DD").parse(begin);
@@ -43,10 +43,11 @@ public class HotelController {
         }
 
         return available;
-    }*/
+    }
+
 
     @GetMapping
-    private Iterable<Hotel> getavai(){
+    public Iterable<Hotel> getAvailable() {
         return hotelRepository.findAll();
     }
 

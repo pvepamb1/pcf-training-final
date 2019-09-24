@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestOperations;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,9 +48,19 @@ public class HotelClient {
         return read;
     }
 
+    public List<HotelUI> getDates(String begin, String end){
+        String finalUrl = hotelURL+"?begin="+begin+"&end="+end;
+        List<HotelUI> read = restOperations.exchange(hotelURL, HttpMethod.GET, null, hotelListType).getBody();
+        return read;
+    }
+
     public List<HotelUI> getAllFallback() {
         log.debug("Returning {} hotels from the fallback method", lastRead.size());
 
         return lastRead;
+    }
+
+    public HotelUI bookHotel(){
+        return null;
     }
 }

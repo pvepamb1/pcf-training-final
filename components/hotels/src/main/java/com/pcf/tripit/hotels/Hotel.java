@@ -11,7 +11,6 @@ public class Hotel {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;
@@ -23,7 +22,8 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(String name, String address, String city, int capacity, double price) {
+    public Hotel(long id,String name, String address, String city, int capacity, double price) {
+        this.id=id;
         this.name = name;
         this.address = address;
         this.city = city;

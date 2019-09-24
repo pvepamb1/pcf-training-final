@@ -51,29 +51,7 @@
     </style>
 
     <meta charset = "utf-8">
-    <title>jQuery UI Datepicker functionality</title>
-    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-          rel = "stylesheet">
-    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <!-- Javascript -->
-
-    <script>
-        $(function() {
-            $( "#datepicker-8" ).datepicker({
-                prevText:"click for previous months",
-                nextText:"click for next months",
-                showOtherMonths:true,
-                selectOtherMonths: false
-            });
-            $( "#datepicker-9" ).datepicker({
-                prevText:"click for previous months",
-                nextText:"click for next months",
-                showOtherMonths:true,
-                selectOtherMonths: true
-            });
-        });
-    </script>
+    <title>Hotels</title>
 
 </head>
 <body>
@@ -84,10 +62,13 @@
 </div>
 
 
-<div  style="padding-top:80px;margin-left: 630px">
-    <p>Enter Start Date: <input type = "text" id = "datepicker-8"></p>
-    <p>Enter End Date: <input type = "text" id = "datepicker-9"></p>
-    <button class="go">Go</button>
+<div  style="padding-top:100px;margin-left: 630px">
+
+    <form action="/hotels/filter" method="get">
+    <p>Enter Start Date: <input  name="begin" type = "date"></p>
+    <p>Enter End Date: <input  name="end" type = "date"></p>
+    <button type ="submit" class="go">Go</button>
+    </form>
 
 </div>
 
@@ -110,7 +91,7 @@
                 <td><c:out value="${hotel.address}"/></td>
                 <td><c:out value="${hotel.city}"/></td>
                 <td><c:out value="${hotel.price}"/></td>
-                <td><button class="button button2">Book</button></td>
+                <td><button onclick="window.location.href = '/book?${hotel.date}';" class="button button2">Book</button></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -118,11 +99,11 @@
 
     <c:if test="${count > 0}">
         <c:if test="${page > 1}">
-          <a href="<c:url value="moviefun"><c:param name="page" value="${page - 1}"/><c:param name="field" value="${field}"/><c:param name="key" value="${key}"/></c:url>">&lt; Prev</a>&nbsp;
+          <a href="<c:url value="hotels"><c:param name="page" value="${page - 1}"/><c:param name="field" value="${field}"/><c:param name="key" value="${key}"/></c:url>">&lt; Prev</a>&nbsp;
         </c:if>
         Showing records ${start} to ${end} of ${count}
         <c:if test="${page < pageCount}">
-          &nbsp;<a href="<c:url value="moviefun"><c:param name="page" value="${page + 1}"/><c:param name="field" value="${field}"/><c:param name="key"
+          &nbsp;<a href="<c:url value="hotels"><c:param name="page" value="${page + 1}"/><c:param name="field" value="${field}"/><c:param name="key"
                                                                                                                                             value="${key}"/></c:url>">Next &gt;</a>
         </c:if>
       </c:if>

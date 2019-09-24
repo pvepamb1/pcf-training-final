@@ -8,16 +8,18 @@ public class HotelUI {
     private String city;
     private int capacity;
     private double price;
+    private String date;
 
     public HotelUI() {
     }
 
-    public HotelUI(String name, String address, String city, int capacity, double price) {
+    public HotelUI(String name, String address, String city, int capacity, double price,String date) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.capacity = capacity;
         this.price = price;
+        this.date= date;
     }
 
     public static long getSerialVersionUID() {
@@ -62,6 +64,14 @@ public class HotelUI {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
 
