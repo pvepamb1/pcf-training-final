@@ -32,8 +32,8 @@ public class HotelController {
     public Iterable<Hotel> getAvailable(@RequestParam String begin, @RequestParam String end) throws ParseException {
 
         LOGGER.info("In filter");
-        Date startDate = new SimpleDateFormat("YYYY-MM-DD").parse(begin);
-        Date endDate = new SimpleDateFormat("YYYY-MM-DD").parse(end);
+        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(begin);
+        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(end);
 
         List<Hotel> available = new ArrayList<>();
         for(Hotel hotel: hotelRepository.findAll()){
