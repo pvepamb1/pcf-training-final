@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +33,9 @@ public class HController {
     }
 
     @GetMapping("/book")
-    public String bookHotel(Map<String,Object> model){
-        model.put("hotels", hotelClient.bookHotel());
-        return "hbook";
+    public String bookHotel(@RequestParam String name, @RequestParam String address, @RequestParam String city,
+                            @RequestParam String begin, @RequestParam String end, Map<String, Object> model){
+        model.put("hotels", hotelClient.bookHotel(name, address, city, begin, end));
+        return "hSuccess";
     }
 }

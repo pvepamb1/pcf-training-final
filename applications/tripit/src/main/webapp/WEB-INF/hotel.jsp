@@ -91,7 +91,7 @@
                 <td><c:out value="${hotel.address}"/></td>
                 <td><c:out value="${hotel.city}"/></td>
                 <td><c:out value="${hotel.price}"/></td>
-                <td><button onclick="window.location.href = '/book?${hotel.date}';" class="button button2">Book</button></td>
+                <td><button onclick="window.location.href = '/hotels/book?name=${hotel.name}&address=${hotel.address}&city=${hotel.city}&${hotel.date}';" class="button button2">Book</button></td>
             </tr>
         </c:forEach>
         </tbody>

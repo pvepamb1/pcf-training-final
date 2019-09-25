@@ -15,31 +15,31 @@ public class BookingID implements Serializable {
 
     @ManyToOne
     @JoinColumn
-    private Hotel hotelId;
+    private Hotel hotel;
     @Column(length = 5)
-    private String roomId;
+    private long roomId;
 
     public BookingID() {
     }
 
-    public BookingID(Hotel hotelId, String roomId) {
-        this.hotelId = hotelId;
+    public BookingID(Hotel hotel, long roomId) {
+        this.hotel = hotel;
         this.roomId = roomId;
     }
 
-    public Hotel getHotelId() {
-        return hotelId;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelId(Hotel hotelId) {
-        this.hotelId = hotelId;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
-    public String getRoomId() {
+    public long getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(String roomId) {
+    public void setRoomId(long roomId) {
         this.roomId = roomId;
     }
 }

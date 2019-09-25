@@ -17,6 +17,8 @@ import java.util.List;
 public class HotelClient {
     private static ParameterizedTypeReference<List<HotelUI>> hotelListType = new ParameterizedTypeReference<List<HotelUI>>() {
     };
+    private static ParameterizedTypeReference<HotelUI> hotelType = new ParameterizedTypeReference<HotelUI>() {
+    };
     private String hotelURL;
     private RestOperations restOperations;
     private static final int CACHE_SIZE = 5;
@@ -49,9 +51,8 @@ public class HotelClient {
     }
 
     public List<HotelUI> getDates(String begin, String end){
-        String finalUrl = hotelURL+"?begin="+begin+"&end="+end;
-        List<HotelUI> read = restOperations.exchange(hotelURL, HttpMethod.GET, null, hotelListType).getBody();
-        return read;
+        String finalUrl = hotelURL+"/filter?begin="+begin+"&end="+end;
+        return restOperations.exchange(finalUrl, HttpMethod.GET, null, hotelListType).getBody();
     }
 
     public List<HotelUI> getAllFallback() {
@@ -60,7 +61,18 @@ public class HotelClient {
         return lastRead;
     }
 
-    public HotelUI bookHotel(){
-        return null;
+    public HotelUI bookHotel(String name, String address, String city, String begin, String end){
+        String finalUrl = hotelURL+"/book?name="+name+"&address="+address+"&city="+city+"&begin="+begin+"&end="+end;
+        HotelUI hotelUI = restOperations.exchange(finalUrl, HttpMethod.GET, null, hotelType).getBody();
+        return hotelUI;
     }
+
+    //upcoming enhancement
+
+  /*  public HotelUI bookHotel2(String name, String address, String city, String begin, String end){
+        String finalUrl = hotelURL+"/book";
+
+        HotelUI hotelUI = restOperations.exchange(finalUrl, HttpMethod.POST, new HotelUI(name, address, city), hotelType).getBody();
+        return hotelUI;
+    }*/
 }

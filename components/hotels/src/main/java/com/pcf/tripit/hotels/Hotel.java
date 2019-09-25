@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Hotel {
@@ -77,6 +78,11 @@ public class Hotel {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.name, this.address, this.city);
     }
 }
 
