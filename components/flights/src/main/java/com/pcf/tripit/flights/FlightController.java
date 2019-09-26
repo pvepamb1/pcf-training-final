@@ -27,7 +27,7 @@ public class FlightController {
     @GetMapping("/filter")
     public Iterable<Flight> getFlights(@RequestParam String to, @RequestParam String from, @RequestParam String date) throws ParseException {
         Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        Iterable<Flight> flights = flightRepository.findByToAndFrom(to, from);
+        Iterable<Flight> flights = flightRepository.findByDestinationAndSource(to, from);
         List<Flight> available = new ArrayList<>();
         for (Flight flight:flights) {
             if(flight.getDepartureTime().getDate()==date1.getDate() && flight.getTicketsLeft()!=0)
@@ -42,6 +42,11 @@ public class FlightController {
         LOGGER.info("In book");
         Date beginDate = new SimpleDateFormat("yyyy-MM-dd").parse(departureTime);
         Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(arrivalTime);
+        Flight flight = flightRepository
+                .findByAirlinesNameAndFlightNumberAndSourceAndDestinationAndDepartureTimeAndArrivalTime
+                        (name, flightNumber, from, to, departureTime, arrivalTime).get(0);
+        flight.setTicketsLeft(flight.getTicketsLeft()-1);
+
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

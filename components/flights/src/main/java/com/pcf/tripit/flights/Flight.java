@@ -17,24 +17,39 @@ public class Flight implements Serializable {
     private String flightNumber;
     private Date arrivalTime;
     private Date departureTime;
-    private String to;
-    private String from;
+    private String destination;
+    private String source;
     private int cost;
     private int ticketsLeft;
 
-    public Flight(String to) {
-
-        this.to = to;
+    public Flight() {
     }
 
-    public Flight(String airlinesName, String flightNumber, Date arrivalTime, Date departureTime, String to, int cost, int ticketsLeft) {
+    public Flight(String airlinesName, String flightNumber, Date arrivalTime, Date departureTime, String destination, String source, int cost, int ticketsLeft) {
         this.airlinesName = airlinesName;
         this.flightNumber = flightNumber;
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
-        this.to = to;
+        this.destination = destination;
+        this.source = source;
         this.cost = cost;
         this.ticketsLeft = ticketsLeft;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public long getId() {

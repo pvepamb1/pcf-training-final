@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestOperations;
 
 import java.util.ArrayList;
@@ -61,10 +64,13 @@ public class HotelClient {
         return lastRead;
     }
 
-    public HotelUI bookHotel(String name, String address, String city, String begin, String end){
+    public ResponseEntity<HotelUI> bookHotel(String name, String address, String city, String begin, String end){
         String finalUrl = hotelURL+"/book?name="+name+"&address="+address+"&city="+city+"&begin="+begin+"&end="+end;
-        HotelUI hotelUI = restOperations.exchange(finalUrl, HttpMethod.GET, null, hotelType).getBody();
-        return hotelUI;
+        try{
+        return restOperations.exchange(finalUrl, HttpMethod.GET, null, hotelType);
+        }catch(HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
 }

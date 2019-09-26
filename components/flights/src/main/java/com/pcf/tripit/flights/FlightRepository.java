@@ -3,10 +3,12 @@ package com.pcf.tripit.flights;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FlightRepository extends CrudRepository<Flight, Long> {
 
-    Iterable<Flight> findByToAndFromAndDate(String to, String from, String date);
+    Iterable<Flight> findByDestinationAndSource(String to, String from);
 
-    Iterable<Flight> findByToAndFrom(String to, String from);
+    List<Flight> findByAirlinesNameAndFlightNumberAndSourceAndDestinationAndDepartureTimeAndArrivalTime(String name, String flightNumber, String from, String to, String departureTime, String arrivalTime);
 }

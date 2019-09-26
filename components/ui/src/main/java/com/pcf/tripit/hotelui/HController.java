@@ -1,4 +1,5 @@
 package com.pcf.tripit.hotelui;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,8 @@ public class HController {
         this.hotelClient = hotelClient;
     }
     @GetMapping
-    public String allHotels(Map<String, Object> model) {
-        model.put("hotels", hotelClient.getAll() );
-        return "hotel";
+    public String getFilter(Map<String, Object> model) {
+        return "filterhotels";
     }
 
     @GetMapping("/filter")
@@ -35,7 +35,13 @@ public class HController {
     @GetMapping("/book")
     public String bookHotel(@RequestParam String name, @RequestParam String address, @RequestParam String city,
                             @RequestParam String begin, @RequestParam String end, Map<String, Object> model){
-        model.put("hotels", hotelClient.bookHotel(name, address, city, begin, end));
-        return "hSuccess";
+        ResponseEntity<HotelUI> responseEntity = hotelClient.bookHotel(name, address, city, begin, end);
+        if (responseEntity.getStatusCode().is4xxClientError()){
+            return "hFailure";
+        }
+        else {
+            model.put("hotel", responseEntity.getBody());
+            return "hSuccess";
+        }
     }
 }

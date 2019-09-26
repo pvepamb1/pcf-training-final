@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestOperations;
 
 import java.util.ArrayList;
@@ -46,8 +49,8 @@ public class FlightClient {
         return read;
     }
 
-    public List<FlightUI> getDates(String begin, String end){
-        String finalUrl = flightURL +"/filter?begin="+begin+"&end="+end;
+    public List<FlightUI> getDates(String to, String from, String date){
+        String finalUrl = flightURL +"/filter?to="+to+"&from="+from+"&date="+date;
         return restOperations.exchange(finalUrl, HttpMethod.GET, null, flightListType).getBody();
     }
 
@@ -57,9 +60,12 @@ public class FlightClient {
         return lastRead;
     }
 
-    public FlightUI bookHotel(String name, String address, String city, String begin, String end){
+    public ResponseEntity<FlightUI> bookFlight(String name, String address, String city, String begin, String end){
         String finalUrl = flightURL +"/book?name="+name+"&address="+address+"&city="+city+"&begin="+begin+"&end="+end;
-        FlightUI hotelUI = restOperations.exchange(finalUrl, HttpMethod.GET, null, flightType).getBody();
-        return hotelUI;
+        try{
+            return restOperations.exchange(finalUrl, HttpMethod.GET, null, flightType);
+        }catch(HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 }

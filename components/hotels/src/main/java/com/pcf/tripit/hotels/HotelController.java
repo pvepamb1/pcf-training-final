@@ -62,7 +62,7 @@ public class HotelController {
     }
 
     @GetMapping("/book")
-    public ResponseEntity<Booking> bookHotel(@RequestParam String name, @RequestParam String address,
+    public ResponseEntity<Hotel> bookHotel(@RequestParam String name, @RequestParam String address,
                                            @RequestParam String city,@RequestParam String begin,
                                            @RequestParam String end) throws ParseException {
 
@@ -88,11 +88,11 @@ public class HotelController {
         if(roomId!=0L){
             bookingRepository.save(new Booking(new BookingID(hotel, roomId), beginDate, endDate));
             LOGGER.info("Booked");
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(hotel, HttpStatus.CREATED);
         }
         else {
             LOGGER.info("Not booked");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 

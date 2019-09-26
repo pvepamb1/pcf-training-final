@@ -27,11 +27,4 @@ public class MainController {
         hotelInitialList.asList().forEach(hotelClient::create);
         return "index";
     }
-
-   /* @GetMapping("/setup")
-    public String setDatabase(){
-        model.put("hotels", hotelClient.getAll());
-        return "hotel";
-    }*/
-
-}
+ }
