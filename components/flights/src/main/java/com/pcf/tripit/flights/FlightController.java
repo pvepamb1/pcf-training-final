@@ -27,28 +27,35 @@ public class FlightController {
 
     @GetMapping("/filter")
     public Iterable<Flight> getFlights(@RequestParam String to, @RequestParam String from, @RequestParam String date) throws ParseException {
+        LOGGER.info("In filter");
+        LOGGER.info("Before parsing date is {}", date);
         Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        LOGGER.info("After parsing date is {}", date1);
         Iterable<Flight> flights = flightRepository.findByDestinationAndSource(to, from);
         List<Flight> available = new ArrayList<>();
         for (Flight flight:flights) {
             if(flight.getDepartureTime().getDate()==date1.getDate() && flight.getTicketsLeft()!=0)
                 available.add(flight);
         }
+        LOGGER.info("Count is {}", available.size());
         return available;
     }
 
     @GetMapping("/book")
-    public ResponseEntity<Flight> bookFlight(@RequestParam String name, @RequestParam String flightNumber, @RequestParam String from,
-                                             @RequestParam String to, @RequestParam String departureTime, @RequestParam String arrivalTime) throws ParseException {
+    public ResponseEntity<Flight> bookFlight(@RequestParam String airlinesName, @RequestParam String flightNumber, @RequestParam String source,
+                                             @RequestParam String destination, @RequestParam String departureTime, @RequestParam String arrivalTime) throws ParseException {
         LOGGER.info("In book");
-        Date beginDate = new SimpleDateFormat("yyyy-MM-dd").parse(departureTime);
-        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(arrivalTime);
+        LOGGER.info("Before parsing date is {} {}", departureTime, arrivalTime);
+        Date beginDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(departureTime);
+        Date endDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(arrivalTime);
+        LOGGER.info("After parsing date is {} {}", beginDate, endDate);
         Flight flight = flightRepository
                 .findByAirlinesNameAndFlightNumberAndSourceAndDestinationAndDepartureTimeAndArrivalTime
-                        (name, flightNumber, from, to, departureTime, arrivalTime).get(0);
+                        (airlinesName, flightNumber, source, destination, endDate, beginDate).get(0);
         flight.setTicketsLeft(flight.getTicketsLeft()-1);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        flightRepository.save(flight);
+        LOGGER.info("booked");
+        return new ResponseEntity<>(flight, HttpStatus.CREATED);
     }
 
     @PostMapping

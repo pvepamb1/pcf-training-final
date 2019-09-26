@@ -65,7 +65,7 @@
 <div  style="padding-top:250px;margin-left: 630px" >
 
     <form action="/flights/filter" method="get">
-        <p>Enter Start Date: <input  name="begin" type = "date"></p>
+        <p>Enter Start Date: <input  name="date" type = "date"></p>
         <p style="margin-left:65px">From: <input  type="text" name="from" size="18"></p>
         <p style="margin-left:80px">To: <input  type="text" name="to" size="19" ></p>
         <button type ="submit" class="go">Go</button>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.text.ParseException;
 import java.util.Map;
 
 @Controller
@@ -27,7 +28,7 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String message(Map<String, Object> model){
+    public String message(Map<String, Object> model) throws ParseException {
         hotelInitialList.asList().forEach(hotelClient::create);
         flightInitialList.asList().forEach(flightClient::create);
         return "index";

@@ -60,8 +60,8 @@ public class FlightClient {
         return lastRead;
     }
 
-    public ResponseEntity<FlightUI> bookFlight(String name, String address, String city, String begin, String end){
-        String finalUrl = flightURL +"/book?name="+name+"&address="+address+"&city="+city+"&begin="+begin+"&end="+end;
+    public ResponseEntity<FlightUI> bookFlight(String airlinesName, String flightNumber, String source, String destination, String arrivalTime, String departureTime ){
+        String finalUrl = flightURL +"/book?airlinesName="+airlinesName+"&flightNumber="+flightNumber+"&source="+source+"&destination="+destination+"&arrivalTime="+arrivalTime+"&departureTime="+departureTime;
         try{
             return restOperations.exchange(finalUrl, HttpMethod.GET, null, flightType);
         }catch(HttpStatusCodeException e) {

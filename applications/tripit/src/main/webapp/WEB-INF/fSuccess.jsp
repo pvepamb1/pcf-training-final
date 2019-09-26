@@ -6,7 +6,7 @@
 <fmt:setLocale value="${language}"/>
 <html>
 <head>
-<title>Confirmation</title>
+    <title>Flight Success</title>
     <link href="../assests/css/tripit.css" rel="stylesheet">
 </head>
 <body>
@@ -14,27 +14,32 @@
 
     <h1 style="padding-top :10px; padding-left: 30px ; color:white; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Tripit</h1>
 </div>
-
 <h1 style="padding-top :40px;margin-top:150px ;padding-left: 600px ; color:cornflowerblue ;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Booking confirmed</h1>
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>Cost</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><c:out value="${hotel.name}"/></td>
-                <td><c:out value="${hotel.address}"/></td>
-                <td><c:out value="${hotel.city}"/></td>
-                <td><c:out value="${hotel.price}"/></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Airline</th>
+        <th>Flight Number</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><c:out value="${flight.airlinesName}"/></td>
+        <td><c:out value="${flight.flightNumber}"/></td>
+        <td><c:out value="${flight.departureTime}"/></td>
+        <td><c:out value="${flight.arrivalTime}"/></td>
+        <td><c:out value="${flight.source}"/></td>
+        <td><c:out value="${flight.destination}"/></td>
+        <td><c:out value="${flight.cost}"/></td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

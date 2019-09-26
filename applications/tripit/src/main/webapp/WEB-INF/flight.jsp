@@ -95,7 +95,7 @@
 
 <form action="/flights/filter" method="get">
 <div  style="padding-top:80px;margin-left: 630px">
-    <p>Enter Start Date: <input type = "text" id = "datepicker-8"></p>
+    <p>Enter Start Date: <input type = "date" name="date" ></p>
     <p style="margin-left:65px">From: <input  type="text" name="from" size="18"></p>
     <p style="margin-left:80px">To: <input type="text" name="to" size="19" ></p>
     <button class="go">Go</button>
@@ -120,16 +120,16 @@
 
         <tbody>
 
-        <c:forEach items="${flights}" var="flights">
+        <c:forEach items="${flights}" var="flight">
             <tr>
-                <td><c:out value="${flights.airlinesName}"/></td>
-                <td><c:out value="${flights.flightNumber}"/></td>
-                <td><c:out value="${flights.departure}"/></td>
-                <td><c:out value="${flights.arrival}"/></td>
-                <td><c:out value="${flights.from}"/></td>
-                <td><c:out value="${flights.to}"/></td>
-                <td><c:out value="${flights.cost}"/></td>
-                <td><button class="button button2">Book</button></td>
+                <td><c:out value="${flight.airlinesName}"/></td>
+                <td><c:out value="${flight.flightNumber}"/></td>
+                <td><c:out value="${flight.departureTime}"/></td>
+                <td><c:out value="${flight.arrivalTime}"/></td>
+                <td><c:out value="${flight.source}"/></td>
+                <td><c:out value="${flight.destination}"/></td>
+                <td><c:out value="${flight.cost}"/></td>
+                <td><button class="button button2"  onclick="window.location.href = '/flights/book?airlinesName=${flight.airlinesName}&flightNumber=${flight.flightNumber}&source=${flight.source}&destination=${flight.destination}&departureTime=${flight.departureTime}&arrivalTime=${flight.arrivalTime}'">Book</button></td>
             </tr>
         </c:forEach>
         </tbody>
