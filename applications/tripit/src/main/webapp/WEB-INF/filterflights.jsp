@@ -13,7 +13,7 @@
 <fmt:setLocale value="${language}"/>
 <html>
 <head>
-    <title>Hotel</title>
+    <title>Filter Flights</title>
     <link href="../assests/css/tripit.css" rel="stylesheet">
     <style>
         .button {
@@ -58,44 +58,18 @@
 <div class=nav>
 
     <h1 style="padding-top :10px; padding-left: 30px ; color:white; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Tripit</h1>
-    <h1 style="padding-top :40px; padding-left: 600px ; color:cornflowerblue ;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Book Your Hotel Now</h1>
+    <h1 style="padding-top :40px;margin-top:150px ;padding-left: 600px ; color:cornflowerblue ;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> Book Your Hotel Now</h1>
 </div>
 
 
-<div  style="padding-top:100px;margin-left: 630px">
+<div  style="padding-top:250px;margin-left: 630px" >
 
-    <form action="/hotels/filter" method="get">
-    <p>Enter Start Date: <input  name="begin" type = "date"></p>
-    <p>Enter End Date: <input  name="end" type = "date"></p>
-    <button type ="submit" class="go">Go</button>
+    <form action="/flights/filter" method="get">
+        <p>Enter Start Date: <input  name="begin" type = "date"></p>
+        <p style="margin-left:65px">From: <input  type="text" name="from" size="18"></p>
+        <p style="margin-left:80px">To: <input  type="text" name="to" size="19" ></p>
+        <button type ="submit" class="go">Go</button>
     </form>
-
-</div>
-
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>Cost</th>
-            <th>Select</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <c:forEach items="${hotels}" var="hotel">
-            <tr>
-                <td><c:out value="${hotel.name}"/></td>
-                <td><c:out value="${hotel.address}"/></td>
-                <td><c:out value="${hotel.city}"/></td>
-                <td><c:out value="${hotel.price}"/></td>
-                <td><button onclick="window.location.href = '/hotels/book?name=${hotel.name}&address=${hotel.address}&city=${hotel.city}&${hotel.date}';" class="button button2">Book</button></td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
 
 </div>
 </body>

@@ -6,10 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="language" value="${pageContext.request.locale}"/>
+<fmt:setLocale value="${language}"/>
+
 <html>
 <head>
     <title>Flight</title>
-    <link href="../../assests/css/tripit.css" rel="stylesheet">
+    <link href="../assests/css/tripit.css" rel="stylesheet">
     <style>
         .button {
             background-color: #4CAF50; /* Green */
@@ -87,12 +93,15 @@
 </div>
 
 
+<form action="/flights/filter" method="get">
 <div  style="padding-top:80px;margin-left: 630px">
     <p>Enter Start Date: <input type = "text" id = "datepicker-8"></p>
-    <p>Enter End Date: <input type = "text" id = "datepicker-9"></p>
+    <p style="margin-left:65px">From: <input  type="text" name="from" size="18"></p>
+    <p style="margin-left:80px">To: <input type="text" name="to" size="19" ></p>
     <button class="go">Go</button>
 
 </div>
+</form>
 
 <div>
     <table>
@@ -100,8 +109,10 @@
         <tr>
             <th>Airlines</th>
             <th>Flight Number</th>
-            <th>Arrival</th>
             <th>Departure</th>
+            <th>Arrival</th>
+            <th>From</th>
+            <th>To</th>
             <th>Cost</th>
             <th>Select</th>
         </tr>
@@ -113,25 +124,16 @@
             <tr>
                 <td><c:out value="${flights.airlinesName}"/></td>
                 <td><c:out value="${flights.flightNumber}"/></td>
-                <td><c:out value="${flights.arrival}"/></td>
                 <td><c:out value="${flights.departure}"/></td>
+                <td><c:out value="${flights.arrival}"/></td>
+                <td><c:out value="${flights.from}"/></td>
+                <td><c:out value="${flights.to}"/></td>
                 <td><c:out value="${flights.cost}"/></td>
                 <td><button class="button button2">Book</button></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-
-    <c:if test="${count > 0}">
-        <c:if test="${page > 1}">
-            <a href="<c:url value="flights"><c:param name="page" value="${page - 1}"/><c:param name="field" value="${field}"/><c:param name="key" value="${key}"/></c:url>">&lt; Prev</a>&nbsp;
-        </c:if>
-        Showing records ${start} to ${end} of ${count}
-        <c:if test="${page < pageCount}">
-            &nbsp;<a href="<c:url value="flights"><c:param name="page" value="${page + 1}"/><c:param name="field" value="${field}"/><c:param name="key"
-                                                                                                                                              value="${key}"/></c:url>">Next &gt;</a>
-        </c:if>
-    </c:if>
 
 </div>
 </body>
