@@ -67,12 +67,4 @@ public class HotelClient {
         return hotelUI;
     }
 
-    //upcoming enhancement
-
-  /*  public HotelUI bookHotel2(String name, String address, String city, String begin, String end){
-        String finalUrl = hotelURL+"/book";
-
-        HotelUI hotelUI = restOperations.exchange(finalUrl, HttpMethod.POST, new HotelUI(name, address, city), hotelType).getBody();
-        return hotelUI;
-    }*/
 }
