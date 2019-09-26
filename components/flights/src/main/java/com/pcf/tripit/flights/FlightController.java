@@ -52,6 +52,8 @@ public class FlightController {
         Flight flight = flightRepository
                 .findByAirlinesNameAndFlightNumberAndSourceAndDestinationAndDepartureTimeAndArrivalTime
                         (airlinesName, flightNumber, source, destination, endDate, beginDate).get(0);
+        if(flight.getTicketsLeft()==0)
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         flight.setTicketsLeft(flight.getTicketsLeft()-1);
         flightRepository.save(flight);
         LOGGER.info("booked");
