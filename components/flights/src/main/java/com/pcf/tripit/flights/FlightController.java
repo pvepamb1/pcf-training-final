@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/flights")
@@ -22,7 +23,7 @@ public class FlightController {
         this.flightRepository = flightRepository;
     }
 
-    Logger LOGGER = LoggerFactory.getLogger(FlightController.class);
+    private Logger LOGGER = LoggerFactory.getLogger(FlightController.class);
 
     @GetMapping("/filter")
     public Iterable<Flight> getFlights(@RequestParam String to, @RequestParam String from, @RequestParam String date) throws ParseException {
@@ -47,6 +48,15 @@ public class FlightController {
                         (name, flightNumber, from, to, departureTime, arrivalTime).get(0);
         flight.setTicketsLeft(flight.getTicketsLeft()-1);
 
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping
+    public ResponseEntity<Flight> create(@RequestBody Flight flight){
+        flight.setId(flight.hashCode());
+        if(flight.getTicketsLeft()==0)
+            flight.setTicketsLeft(new Random().nextInt(10));
+        flightRepository.save(flight);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

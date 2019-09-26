@@ -29,8 +29,8 @@ public class FlightClient {
         this.restOperations = restOperations;
     }
 
-    public void create(FlightUI hotel) {
-        restOperations.postForEntity(flightURL, hotel, FlightUI.class);
+    public void create(FlightUI flightUI) {
+        restOperations.postForEntity(flightURL, flightUI, FlightUI.class);
     }
 
     // @HystrixCommand(fallbackMethod="getAllFallback",commandProperties = {
@@ -38,13 +38,13 @@ public class FlightClient {
     //})
     public List<FlightUI> getAll() {
         List<FlightUI> read = restOperations.exchange(flightURL, HttpMethod.GET, null, flightListType).getBody();
-        log.debug("Read {} podcasts from {}", read.size(), flightURL);
+        log.debug("Read {} flights from {}", read.size(), flightURL);
 
         lastRead.clear();
-        int copyCount = (read.size() < CACHE_SIZE) ? read.size() : CACHE_SIZE;
+        int copyCount = Math.min(read.size(), CACHE_SIZE);
         for (int i =0; i < copyCount; i++)
             lastRead.add(read.get(i));
-        log.debug("Copied {} hotels into the cache", copyCount);
+        log.debug("Copied {} flights into the cache", copyCount);
 
         return read;
     }

@@ -1,27 +1,25 @@
 package com.pcf.tripit.flightui;
 
-import java.util.Date;
-
 public class FlightUI {
 
     private String airlinesName;
     private String flightNumber;
     private String departureTime;
     private String arrivalTime;
-    private String from;
-    private String to;
+    private String source;
+    private String destination;
     private int cost;
 
     public FlightUI() {
     }
 
-    public FlightUI(String airlinesName, String flightNumber, String departureTime, String arrivalTime, String from, String to, int cost) {
+    public FlightUI(String airlinesName, String flightNumber, String departureTime, String arrivalTime, String source, String destination, int cost) {
         this.airlinesName = airlinesName;
         this.flightNumber = flightNumber;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        this.from = from;
-        this.to = to;
+        this.source = source;
+        this.destination = destination;
         this.cost = cost;
     }
 
@@ -57,20 +55,20 @@ public class FlightUI {
         this.arrivalTime = arrivalTime;
     }
 
-    public String getFrom() {
-        return from;
+    public String getSource() {
+        return source;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getTo() {
-        return to;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public int getCost() {

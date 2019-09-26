@@ -1,5 +1,6 @@
 package com.pcf.tripit;
 
+import com.pcf.tripit.flightui.FlightClient;
 import com.pcf.tripit.hotelui.HotelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +13,9 @@ import org.springframework.web.client.RestTemplate;
 public class TripitApplication {
 
 	@Value("${hotels.ms.url}")
-	private String url;
+	private String hotelUrl;
+	@Value("${flights.ms.url}")
+	private String flightUrl;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TripitApplication.class, args);
@@ -23,8 +26,13 @@ public class TripitApplication {
 	}*/
 
 	@Bean
+	public FlightClient flightClient(RestOperations restOperations){
+		return new FlightClient(flightUrl, restOperations);
+	}
+
+	@Bean
 	public HotelClient hotelClient(RestOperations restOperations) {
-		return new HotelClient(url, restOperations);
+		return new HotelClient(hotelUrl, restOperations);
 	}
 
 	@Bean

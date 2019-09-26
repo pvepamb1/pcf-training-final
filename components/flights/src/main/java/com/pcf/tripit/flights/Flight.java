@@ -2,6 +2,7 @@ package com.pcf.tripit.flights;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -106,5 +107,10 @@ public class Flight implements Serializable {
 
     public void setTicketsLeft(int ticketsLeft) {
         this.ticketsLeft = ticketsLeft;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.airlinesName, this.flightNumber, this.source, this.destination, this.departureTime);
     }
 }
