@@ -22,12 +22,16 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         file:
           - "applications/tripit/build/libs/tripit-1.0-SNAPSHOT.war"
+          - "applications/hotels-ms/build/libs/hotels-ms-1.0-SNAPSHOT.jar"
+          - "applications/flights/build/libs/flights-ms-1.0-SNAPSHOT.jar"
         skip_cleanup: true
     - stage: deploy to test
       language: java
       script:
         - echo "Downloading $RELEASE_TAG"
         - wget -P applications/tripit/build/libs https://github.com/$GITHUB_USERNAME/pcf-training-final/releases/download/$RELEASE_TAG/tripit-1.0-SNAPSHOT.war
+        - wget -P applications/hotels-ms/build/libs https://github.com/$GITHUB_USERNAME/pcf-training-final/releases/download/$RELEASE_TAG/hotels-ms-1.0-SNAPSHOT.jar
+        - wget -P applications/flights-ms/build/libs https://github.com/$GITHUB_USERNAME/pcf-training-final/releases/download/$RELEASE_TAG/flights-ms-1.0-SNAPSHOT.jar
       before_deploy:
         - echo "Deploying $RELEASE_TAG to test"
       deploy:

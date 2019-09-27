@@ -28,6 +28,7 @@ public class FlightController {
     @GetMapping("/filter")
     public Iterable<Flight> getFlights(@RequestParam String to, @RequestParam String from, @RequestParam String date) throws ParseException {
         LOGGER.info("In filter");
+        if(to.equals("")||from.equals("")||date.equals("")) return flightRepository.findAll();
         LOGGER.info("Before parsing date is {}", date);
         Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
         LOGGER.info("After parsing date is {}", date1);

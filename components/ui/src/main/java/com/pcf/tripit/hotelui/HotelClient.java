@@ -1,8 +1,7 @@
 package com.pcf.tripit.hotelui;
 
-//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-//import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
@@ -34,18 +33,20 @@ public class HotelClient {
     }
 
     public void create(HotelUI hotel) {
+        log.debug("Url is {}",hotelURL);
+        System.out.println(hotelURL);
         restOperations.postForEntity(hotelURL, hotel, HotelUI.class);
     }
 
-   // @HystrixCommand(fallbackMethod="getAllFallback",commandProperties = {
-           // @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
-    //})
+    @HystrixCommand(fallbackMethod="getAllFallback",commandProperties = {
+            @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
+    })
     public List<HotelUI> getAll() {
         List<HotelUI> read = restOperations.exchange(hotelURL, HttpMethod.GET, null, hotelListType).getBody();
         log.debug("Read {} podcasts from {}", read.size(), hotelURL);
 
         lastRead.clear();
-        int copyCount = (read.size() < CACHE_SIZE) ? read.size() : CACHE_SIZE;
+        int copyCount = Math.min(read.size(), CACHE_SIZE);
         for (int i =0; i < copyCount; i++)
             lastRead.add(read.get(i));
         log.debug("Copied {} hotels into the cache", copyCount);

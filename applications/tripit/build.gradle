@@ -9,8 +9,8 @@ version = '1.0-SNAPSHOT'
 
 dependencyManagement {
     imports {
-        //mavenBom("org.springframework.cloud:spring-cloud-dependencies:$SCVersion")
-        //mavenBom("io.pivotal.spring.cloud:spring-cloud-services-dependencies:$SCSClientStartersVersion")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:$SCVersion")
+        mavenBom("io.pivotal.spring.cloud:spring-cloud-services-dependencies:$SCSClientStartersVersion")
     }
 }
 
@@ -22,4 +22,8 @@ dependencies {
     compile('org.apache.tomcat.embed:tomcat-embed-jasper:8.5.6')
     compile('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry')
+    compile('io.pivotal.spring.cloud:spring-cloud-services-starter-circuit-breaker')
+    compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+    compile("io.pivotal.spring.cloud:spring-cloud-sso-connector:$SCSSOVersion")
 }

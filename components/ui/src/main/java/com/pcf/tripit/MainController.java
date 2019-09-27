@@ -19,7 +19,6 @@ public class MainController {
     private FlightClient flightClient;
     private FlightInitialList flightInitialList;
 
-    @Autowired
     public MainController(HotelInitialList hotelInitialList, HotelClient hotelClient, FlightClient flightClient, FlightInitialList flightInitialList) {
         this.hotelInitialList = hotelInitialList;
         this.hotelClient = hotelClient;

@@ -1,5 +1,7 @@
 package com.pcf.tripit.flightui;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
@@ -33,9 +35,9 @@ public class FlightClient {
         restOperations.postForEntity(flightURL, flightUI, FlightUI.class);
     }
 
-    // @HystrixCommand(fallbackMethod="getAllFallback",commandProperties = {
-    // @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
-    //})
+    @HystrixCommand(fallbackMethod="getAllFallback",commandProperties = {
+     @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
+    })
     public List<FlightUI> getAll() {
         List<FlightUI> read = restOperations.exchange(flightURL, HttpMethod.GET, null, flightListType).getBody();
         log.debug("Read {} flights from {}", read.size(), flightURL);

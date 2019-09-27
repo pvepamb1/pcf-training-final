@@ -1,0 +1,20 @@
+spring:
+
+  application:
+    name: tripit
+
+  mvc.view:
+    prefix: /WEB-INF/
+    suffix: .jsp
+
+logging.level:
+  root: WARN
+  com.pcf.tripit.hotelui.HotelUI: DEBUG
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
