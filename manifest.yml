@@ -1,12 +1,4 @@
 applications:
-  - name: tripit
-    path: applications/tripit/build/libs/tripit-1.0-SNAPSHOT.war
-    routes:
-      - route: pvv-tripit.apps.pcf.paltraining.perficient.com
-    services:
-      - service-registry
-      - circuit-breaker
-      - tripit-sso
   - name: hotels-ms
       path: applications/hotels-ms/build/libs/hotels-ms-1.0-SNAPSHOT.jar
       routes:
@@ -27,3 +19,11 @@ applications:
         - tripit-sso
       env:
         GRANT_TYPE: client_credentials
+  - name: tripit
+      path: applications/tripit/build/libs/tripit-1.0-SNAPSHOT.war
+      routes:
+        - route: pvv-tripit.apps.pcf.paltraining.perficient.com
+      services:
+        - service-registry
+        - circuit-breaker
+        - tripit-sso
