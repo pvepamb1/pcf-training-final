@@ -19,8 +19,6 @@
 <div class=nav>
 
     <h1 style="padding-top :10px; padding-left: 30px ; color:white; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Tripit</h1>
-    <img src="../assests/img/user.jpg" width="60px" height="60px" alt="Get User Information" style="padding-left:95%; padding-top:10px">
-
 
 </div>
 <div>
