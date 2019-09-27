@@ -1,29 +1,29 @@
 applications:
   - name: hotels-ms
-      path: applications/hotels-ms/build/libs/hotels-ms-1.0-SNAPSHOT.jar
-      routes:
-        - route: pvv-hotels-ms.apps.pcf.paltraining.perficient.com
-      services:
-        - hotels-ms-database
-        - service-registry
-        - tripit-sso
-      env:
-        GRANT_TYPE: client_credentials
+    path: applications/hotels-ms/build/libs/hotels-ms-1.0-SNAPSHOT.jar
+    routes:
+      - route: pvv-hotels-ms.apps.pcf.paltraining.perficient.com
+    services:
+      - hotels-ms-database
+      - service-registry
+      - tripit-sso
+    env:
+      GRANT_TYPE: client_credentials
   - name: flights-ms
-      path: applications/flights-ms/build/libs/flights-ms-1.0-SNAPSHOT.jar
-      routes:
-        - route: pvv-flights-ms.apps.pcf.paltraining.perficient.com
-      services:
-        - flights-ms-database
-        - service-registry
-        - tripit-sso
-      env:
-        GRANT_TYPE: client_credentials
+    path: applications/flights-ms/build/libs/flights-ms-1.0-SNAPSHOT.jar
+    routes:
+      - route: pvv-flights-ms.apps.pcf.paltraining.perficient.com
+    services:
+      - flights-ms-database
+      - service-registry
+      - tripit-sso
+    env:
+      GRANT_TYPE: client_credentials
   - name: tripit
-      path: applications/tripit/build/libs/tripit-1.0-SNAPSHOT.war
-      routes:
-        - route: pvv-tripit.apps.pcf.paltraining.perficient.com
-      services:
-        - service-registry
-        - circuit-breaker
-        - tripit-sso
+    path: applications/tripit/build/libs/tripit-1.0-SNAPSHOT.war
+    routes:
+      - route: pvv-tripit.apps.pcf.paltraining.perficient.com
+    services:
+      - service-registry
+      - circuit-breaker
+      - tripit-sso
