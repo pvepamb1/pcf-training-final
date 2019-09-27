@@ -18,10 +18,6 @@ public class TripitApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TripitApplication.class, args);
 	}
-	//@Bean
-	/*public MovieClient movieClient(RestOperations restOperations) {
-		return new MovieClient("//movies-ms/movies", restOperations);
-	}*/
 
 	@Bean
 	public FlightClient flightClient(RestOperations restOperations){
@@ -33,8 +29,4 @@ public class TripitApplication {
 		return new HotelClient("//hotels-ms/hotels", restOperations);
 	}
 
-	@Bean
-	public RestOperations restOperations() {
-		return new RestTemplate();
-	}
 }

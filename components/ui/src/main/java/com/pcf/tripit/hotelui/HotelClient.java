@@ -33,8 +33,6 @@ public class HotelClient {
     }
 
     public void create(HotelUI hotel) {
-        log.debug("Url is {}",hotelURL);
-        System.out.println(hotelURL);
         restOperations.postForEntity(hotelURL, hotel, HotelUI.class);
     }
 
